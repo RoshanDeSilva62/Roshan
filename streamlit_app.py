@@ -11,7 +11,9 @@ st.write(
 
 from snowflake.snowpark.functions import col
 
-session = get_active_session()
+cnx = st.connection("snowflake")
+session = cnx.session()
+#session = get_active_session()
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('Fruit_Name'))
 # st.dataframe(data=my_dataframe, use_container_width=True)
 ingredients_list = st.multiselect(
